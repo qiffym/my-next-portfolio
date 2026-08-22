@@ -1,6 +1,6 @@
 export const siteConfig = {
-  name: "Your Name",
-  title: "Your Name — Portfolio",
+  name: "QIFFYM",
+  title: "QIFFYM — Portfolio",
   description: "Building digital experiences from prototype to production.",
   url: "https://yoursite.com",
   nav: [
