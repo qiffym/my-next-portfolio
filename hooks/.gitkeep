@@ -1,0 +1,2 @@
+// Client-only React hooks live here.
+// Only add a file when the hook is needed — don't pre-create empty shells.
