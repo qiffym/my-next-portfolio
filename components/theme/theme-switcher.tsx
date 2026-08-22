@@ -3,7 +3,7 @@
 import { MonitorIcon, MoonIcon, SunIcon } from "@phosphor-icons/react";
 import { useTheme } from "next-themes";
 import { useSyncExternalStore } from "react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const themeOptions = [
   { value: "light", label: "Light", icon: SunIcon },
@@ -24,29 +24,28 @@ export default function ThemeSwitcher() {
 
   return (
     <Select
+      items={themeOptions}
       value={selectedTheme}
       onValueChange={(value) => {
         if (value) setTheme(value);
       }}
     >
       <SelectTrigger
-        className="h-9 rounded-full border-border bg-background/70 px-3 hover:bg-muted"
+        className="h-10 w-full min-w-32 border-border bg-background/70 px-3 hover:bg-muted"
         aria-label={`Theme: ${selectedTheme}`}
       >
         <CurrentIcon aria-hidden="true" />
         <SelectValue />
       </SelectTrigger>
-      <SelectContent>
-        {themeOptions.map((option) => {
-          const Icon = option.icon;
-
-          return (
+      <SelectContent alignItemWithTrigger={false} className="w-fit min-w-32">
+        <SelectGroup>
+          {themeOptions.map((option) => (
             <SelectItem key={option.value} value={option.value}>
-              <Icon aria-hidden="true" />
+              <option.icon aria-hidden="true" />
               {option.label}
             </SelectItem>
-          );
-        })}
+          ))}
+        </SelectGroup>
       </SelectContent>
     </Select>
   );

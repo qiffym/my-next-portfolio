@@ -6,7 +6,16 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**/*", "!**/.next", "!**/node_modules", "!**/out", "!**/build", "!**/dist", "!public"]
+    "includes": [
+      "**/*",
+      "!**/.next",
+      "!**/node_modules",
+      "!**/out",
+      "!**/build",
+      "!**/dist",
+      "!public",
+      "!components/ui"
+    ]
   },
   "formatter": {
     "enabled": true,
