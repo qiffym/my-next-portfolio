@@ -14,4 +14,4 @@ export const siteConfig = {
     { label: "LinkedIn", href: "https://linkedin.com/in/yourusername" },
     { label: "Twitter", href: "https://twitter.com/yourusername" },
   ],
-} as const
+} as const;

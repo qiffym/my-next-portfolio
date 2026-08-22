@@ -3,5 +3,5 @@ export default function ServicesSection() {
     <section id="services" className="container mx-auto px-6 py-24">
       {/* Services list */}
     </section>
-  )
+  );
 }

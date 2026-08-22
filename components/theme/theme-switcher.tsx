@@ -1,38 +1,39 @@
-"use client"
+"use client";
 
-import { MonitorIcon, MoonIcon, SunIcon } from "@phosphor-icons/react"
-import { useTheme } from "next-themes"
-import { useSyncExternalStore } from "react"
+import { MonitorIcon, MoonIcon, SunIcon } from "@phosphor-icons/react";
+import { useTheme } from "next-themes";
+import { useSyncExternalStore } from "react";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 
 const themeOptions = [
   { value: "light", label: "Light", icon: SunIcon },
   { value: "dark", label: "Dark", icon: MoonIcon },
   { value: "system", label: "System", icon: MonitorIcon },
-] as const
+] as const;
 
 export default function ThemeSwitcher() {
-  const { setTheme, theme } = useTheme()
+  const { setTheme, theme } = useTheme();
   const mounted = useSyncExternalStore(
     () => () => undefined,
     () => true,
     () => false,
-  )
+  );
 
-  const selectedTheme = mounted ? theme ?? "system" : "system"
-  const CurrentIcon = themeOptions.find((option) => option.value === selectedTheme)?.icon ?? MonitorIcon
+  const selectedTheme = mounted ? (theme ?? "system") : "system";
+  const CurrentIcon =
+    themeOptions.find((option) => option.value === selectedTheme)?.icon ?? MonitorIcon;
 
   return (
     <Select
       value={selectedTheme}
       onValueChange={(value) => {
-        if (value) setTheme(value)
+        if (value) setTheme(value);
       }}
     >
       <SelectTrigger
@@ -44,16 +45,16 @@ export default function ThemeSwitcher() {
       </SelectTrigger>
       <SelectContent>
         {themeOptions.map((option) => {
-          const Icon = option.icon
+          const Icon = option.icon;
 
           return (
             <SelectItem key={option.value} value={option.value}>
               <Icon aria-hidden="true" />
               {option.label}
             </SelectItem>
-          )
+          );
         })}
       </SelectContent>
     </Select>
-  )
+  );
 }

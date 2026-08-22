@@ -3,5 +3,5 @@ export default function ProcessSection() {
     <section id="process" className="container mx-auto px-6 py-24">
       {/* Process steps */}
     </section>
-  )
+  );
 }

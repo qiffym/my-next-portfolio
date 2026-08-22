@@ -1,13 +1,14 @@
-"use client"
+"use client";
 
-import { ListIcon, XIcon } from "@phosphor-icons/react"
-import Link from "next/link"
-import { useState } from "react"
-import { siteConfig } from "@/config/site"
-import ThemeSwitcher from "@/components/theme/theme-switcher"
+import { ListIcon, XIcon } from "@phosphor-icons/react";
+import Link from "next/link";
+import { useState } from "react";
+
+import ThemeSwitcher from "@/components/theme/theme-switcher";
+import { siteConfig } from "@/config/site";
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6">
@@ -36,7 +37,11 @@ export default function Header() {
             aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
             onClick={() => setMenuOpen((open) => !open)}
           >
-            {menuOpen ? <XIcon aria-hidden="true" size={18} /> : <ListIcon aria-hidden="true" size={18} />}
+            {menuOpen ? (
+              <XIcon aria-hidden="true" size={18} />
+            ) : (
+              <ListIcon aria-hidden="true" size={18} />
+            )}
           </button>
         </div>
       </div>
@@ -59,5 +64,5 @@ export default function Header() {
         </nav>
       )}
     </header>
-  )
+  );
 }
