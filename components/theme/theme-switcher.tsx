@@ -3,13 +3,7 @@
 import { MonitorIcon, MoonIcon, SunIcon } from "@phosphor-icons/react";
 import { useTheme } from "next-themes";
 import { useSyncExternalStore } from "react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const themeOptions = [
   { value: "light", label: "Light", icon: SunIcon },
@@ -26,8 +20,7 @@ export default function ThemeSwitcher() {
   );
 
   const selectedTheme = mounted ? (theme ?? "system") : "system";
-  const CurrentIcon =
-    themeOptions.find((option) => option.value === selectedTheme)?.icon ?? MonitorIcon;
+  const CurrentIcon = themeOptions.find((option) => option.value === selectedTheme)?.icon ?? MonitorIcon;
 
   return (
     <Select

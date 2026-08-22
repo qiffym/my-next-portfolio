@@ -37,11 +37,7 @@ export default function Header() {
             aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
             onClick={() => setMenuOpen((open) => !open)}
           >
-            {menuOpen ? (
-              <XIcon aria-hidden="true" size={18} />
-            ) : (
-              <ListIcon aria-hidden="true" size={18} />
-            )}
+            {menuOpen ? <XIcon aria-hidden="true" size={18} /> : <ListIcon aria-hidden="true" size={18} />}
           </button>
         </div>
       </div>
