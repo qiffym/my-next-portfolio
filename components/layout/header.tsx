@@ -12,7 +12,7 @@ export default function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6">
-      <div className="container mx-auto flex min-h-14 max-w-6xl items-center justify-between gap-4 rounded-full border border-border/60 bg-card px-4 py-3 shadow-lg shadow-foreground/5 backdrop-blur-xl dark:bg-card sm:px-6">
+      <div className="container mx-auto flex min-h-14 max-w-6xl items-center justify-between gap-4 rounded-full border border-border/60 bg-card px-4 shadow-lg shadow-foreground/5 backdrop-blur-xl dark:bg-card sm:px-6">
         <Link href="/" className="font-heading font-bold text-lg">
           {siteConfig.name}
         </Link>

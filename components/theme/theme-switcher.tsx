@@ -3,13 +3,16 @@
 import { MonitorIcon, MoonIcon, SunIcon } from "@phosphor-icons/react";
 import { useTheme } from "next-themes";
 import { useSyncExternalStore } from "react";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 const themeOptions = [
   { value: "light", label: "Light", icon: SunIcon },
   { value: "dark", label: "Dark", icon: MoonIcon },
   { value: "system", label: "System", icon: MonitorIcon },
 ] as const;
+
+const defaultTheme = "system";
 
 export default function ThemeSwitcher() {
   const { setTheme, theme } = useTheme();
@@ -19,34 +22,29 @@ export default function ThemeSwitcher() {
     () => false,
   );
 
-  const selectedTheme = mounted ? (theme ?? "system") : "system";
-  const CurrentIcon = themeOptions.find((option) => option.value === selectedTheme)?.icon ?? MonitorIcon;
+  const selectedTheme = mounted ? (theme ?? defaultTheme) : defaultTheme;
+  const currentTheme = themeOptions.find((option) => option.value === selectedTheme) ?? themeOptions[1];
+  const currentThemeIndex = themeOptions.indexOf(currentTheme);
+  const nextTheme = themeOptions[(currentThemeIndex + 1) % themeOptions.length];
+  const CurrentIcon = currentTheme.icon;
 
   return (
-    <Select
-      items={themeOptions}
-      value={selectedTheme}
-      onValueChange={(value) => {
-        if (value) setTheme(value);
-      }}
-    >
-      <SelectTrigger
-        className="h-10 w-full min-w-32 border-border bg-background/70 px-3 hover:bg-muted"
-        aria-label={`Theme: ${selectedTheme}`}
+    <Tooltip>
+      <TooltipTrigger
+        render={
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            className="border-none"
+            aria-label={`Switch to ${nextTheme.label.toLowerCase()} theme`}
+            onClick={() => setTheme(nextTheme.value)}
+          />
+        }
       >
         <CurrentIcon aria-hidden="true" />
-        <SelectValue />
-      </SelectTrigger>
-      <SelectContent alignItemWithTrigger={false} className="w-fit min-w-32">
-        <SelectGroup>
-          {themeOptions.map((option) => (
-            <SelectItem key={option.value} value={option.value}>
-              <option.icon aria-hidden="true" />
-              {option.label}
-            </SelectItem>
-          ))}
-        </SelectGroup>
-      </SelectContent>
-    </Select>
+      </TooltipTrigger>
+      <TooltipContent>Switch to {nextTheme.label.toLowerCase()} theme</TooltipContent>
+    </Tooltip>
   );
 }
